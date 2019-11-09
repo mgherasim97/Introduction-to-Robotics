@@ -1,1 +1,2 @@
-RGB LED with 3 potentiometers controllers for each fo the R, G or B channel.
+RGB LED with 3 potentiometer controllers for each of the R, G or B channel.
+Common CATHODE RGB LED used on a 5V Arduino board and 3 basic potentiometers.
