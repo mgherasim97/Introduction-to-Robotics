@@ -1,3 +1,5 @@
+
+// I had a common cathode RGB LED so the code may differ from my fellow students 
 const int pinLEDR = 6;
 const int pinLEDG = 5;
 const int pinLEDB = 3;
@@ -14,13 +16,17 @@ void setup() {
   pinMode(pinPOTR, INPUT);
   pinMode(pinPOTG, INPUT);
   pinMode(pinPOTB, INPUT);
-  Serial.begin(9600);
 }
 
 
 void loop() {
 
-analogWrite(pinLEDR,analogRead(pinPOTR)/4);Serial.println(analogRead(pinPOTR)/4);
-analogWrite(pinLEDG,analogRead(pinPOTG)/4);Serial.println(analogRead(pinPOTG)/4);
-analogWrite(pinLEDB,analogRead(pinPOTB)/4);Serial.println(analogRead(pinPOTB)/4);
+int valueR = analogRead(pinPOTR) / 4;
+int valueG = analogRead(pinPOTG) / 4;
+int valueB = analogRead(pinPOTB) / 4;
+
+analogWrite(pinLEDR, valueR);
+analogWrite(pinLEDG, valueG);
+analogWrite(pinLEDB, valueB);
+
 }
