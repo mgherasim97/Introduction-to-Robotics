@@ -1,0 +1,4 @@
+Knocking triggers the passive buzzer which starts a melody that can be stopped by the press of a button.
+
+The knocking DOES NOT WORK in my circuit. I used some of my friends code with EXACTLY the same configuration and it still did not work.
+Instead i made the button to stop and start the song  with each press.
