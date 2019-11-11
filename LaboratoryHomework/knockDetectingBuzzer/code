@@ -1,0 +1,110 @@
+#include "pitches.h"
+
+const int pushButton = 2;
+const int passiveBuzzer = A0;
+const int activeBuzzer = 10;
+
+int buttonState = LOW;
+int previousButtonState = LOW;
+int pushedButton = 0;
+int currentSequence = 0;
+int buttonPushesCounter = 1;
+
+int passiveBuzzerValue = 0;
+
+
+int musicPlaying = 1;
+int currentNote = 0;
+int previousNoteStart = 0;
+int pauseBetweenNotes = 0;
+int melody[] = {
+NOTE_C4, NOTE_G3, NOTE_G3, NOTE_A3, NOTE_G3, 0, NOTE_B3, NOTE_C4
+};
+
+
+int noteDurations[] = {
+4, 8, 8, 4, 4, 4, 4, 4
+};
+
+void setup() {
+  
+  pinMode(pushButton, INPUT);
+  pinMode(passiveBuzzer, INPUT);
+  pinMode(activeBuzzer, OUTPUT);
+  Serial.begin(9600); 
+  
+}
+
+//function the returns wheter the button has been pushed or not
+// a "button push" I considered to be a 30 consecutive 1s sequence
+void buttonPushedOrNot(){
+  
+  buttonState = digitalRead(pushButton);
+  Serial.println(buttonState);
+  if( buttonState == HIGH && previousButtonState == LOW ) 
+      {
+        currentSequence = 1;
+        pushedButton = 0;
+      }
+  else if ( buttonState == HIGH && previousButtonState == HIGH )
+          ++currentSequence;
+
+  if(currentSequence >= 30 && pushedButton == 0 ){ //the button has been pushed
+      pushedButton = 1;
+      ++buttonPushesCounter;
+  }
+  
+  previousButtonState = buttonState;
+  
+}
+
+
+void stopMusic(){
+  currentNote = 0;
+  musicPlaying = 0;
+}
+
+
+
+void continueSong(){
+
+int currentTime = millis();
+if(previousNoteStart + pauseBetweenNotes <= currentTime){ // next note
+    
+    if(currentNote == 8) {
+        currentNote = 0; //restarting the song
+        pauseBetweenNotes = 2000; //pause between song repetitions   
+      }
+      
+    else {
+    int noteDuration = 1000 / noteDurations[currentNote];
+    tone(activeBuzzer, melody[currentNote], noteDuration);
+    pauseBetweenNotes = noteDuration * 1.30;
+    previousNoteStart = currentTime;
+    ++currentNote;
+    }
+}
+  
+}
+
+void loop() {
+
+  buttonPushedOrNot();
+  if(buttonPushesCounter % 2 == 0 && musicPlaying == 1) stopMusic(); //for even presses the music stops
+  else if(buttonPushesCounter % 2 == 1 && musicPlaying == 0) { //for odd presses the music plays
+          musicPlaying = 1;
+          continueSong();
+        }
+
+  if(musicPlaying == 1) continueSong();
+
+  int value = analogRead(passiveBuzzer);
+  Serial.println(value);
+  
+}
+
+
+
+
+
+
