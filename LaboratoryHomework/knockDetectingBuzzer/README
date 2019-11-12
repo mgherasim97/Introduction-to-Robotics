@@ -1,4 +1,10 @@
 Knocking triggers the passive buzzer which starts a melody that can be stopped by the press of a button.
 
-The knocking DOES NOT WORK in my circuit. I used some of my friends code with EXACTLY the same configuration and it still did not work.
-Instead i made the button to stop and start the song  with each press.
+Implementation with no delay() usage.
+Components:
+-1 x arduino board
+-1 x usbToArduino cable
+-11 x connection cables
+-1 active buzzer
+-1 pushbutton
+-1 circular thing the teacher gave us as a substitute for the passive buzzer (the passive buzzer didnt work)
