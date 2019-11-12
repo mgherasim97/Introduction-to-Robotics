@@ -9,9 +9,10 @@ int previousButtonState = LOW;
 int pushedButton = 0;
 int currentSequence = 0;
 int buttonPushesCounter = 1;
+int previousButtonPushesCounter = 1;
 
 int passiveBuzzerValue = 0;
-
+int threshold = 700;
 
 int musicPlaying = 1;
 int currentNote = 0;
@@ -49,7 +50,6 @@ void setup() {
 void buttonPushedOrNot(){
   
   buttonState = digitalRead(pushButton);
-  Serial.println(buttonState);
   if( buttonState == HIGH && previousButtonState == LOW ) 
       {
         currentSequence = 1;
@@ -97,16 +97,16 @@ if(previousNoteStart + pauseBetweenNotes <= currentTime){ // next note
 }
 
 void loop() {
-  /*int value = analogRead(passiveBuzzer);
+  int value = analogRead(passiveBuzzer);
   Serial.println(value);
-  */
+  
   buttonPushedOrNot();
-  if(buttonPushesCounter % 2 == 0 && musicPlaying == 1) stopMusic(); //for even presses the music stops
-  else if(buttonPushesCounter % 2 == 1 && musicPlaying == 0) { //for odd presses the music plays
+  if(buttonPushesCounter == previousButtonPushesCounter + 1 && musicPlaying == 1) stopMusic(); //for even presses the music stops
+  else if(value > threshold && musicPlaying == 0) //for odd presses the music plays
           musicPlaying = 1;
-          continueSong();
-        }
+        
 
   if(musicPlaying == 1) continueSong();
-  
+
+  previousButtonPushesCounter = buttonPushesCounter;
 }
