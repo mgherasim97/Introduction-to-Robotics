@@ -17,13 +17,22 @@ int musicPlaying = 1;
 int currentNote = 0;
 int previousNoteStart = 0;
 int pauseBetweenNotes = 0;
+#define NOTE_A5  880
+#define NOTE_AS5 932
+#define NOTE_B5  988
 int melody[] = {
-NOTE_C4, NOTE_G3, NOTE_G3, NOTE_A3, NOTE_G3, 0, NOTE_B3, NOTE_C4
+NOTE_A5, NOTE_AS5, NOTE_B5, NOTE_AS5, NOTE_B5, NOTE_AS5, NOTE_B5, NOTE_AS5, 0,
+NOTE_A5, NOTE_AS5, NOTE_B5, NOTE_AS5, NOTE_B5, NOTE_AS5, NOTE_B5, NOTE_AS5 
 };
 
 
 int noteDurations[] = {
-4, 8, 8, 4, 4, 4, 4, 4
+4, 4, 4, 4, 4, 4, 4, 4, 12, 4, 4, 4, 4, 4, 4, 4, 4
+};
+
+double notePause[] = {
+1.02, 1.02, 1.02, 1.02, 1.02, 1.02, 1.02, 1.02, 1.00,
+1.3, 1.3, 1.3, 1.3, 1.3, 1.3, 1.3, 1.3  
 };
 
 void setup() {
@@ -71,7 +80,7 @@ void continueSong(){
 int currentTime = millis();
 if(previousNoteStart + pauseBetweenNotes <= currentTime){ // next note
     
-    if(currentNote == 8) {
+    if(currentNote == 17) {
         currentNote = 0; //restarting the song
         pauseBetweenNotes = 2000; //pause between song repetitions   
       }
@@ -79,7 +88,7 @@ if(previousNoteStart + pauseBetweenNotes <= currentTime){ // next note
     else {
     int noteDuration = 1000 / noteDurations[currentNote];
     tone(activeBuzzer, melody[currentNote], noteDuration);
-    pauseBetweenNotes = noteDuration * 1.30;
+    pauseBetweenNotes = noteDuration * notePause[currentNote];
     previousNoteStart = currentTime;
     ++currentNote;
     }
@@ -88,7 +97,9 @@ if(previousNoteStart + pauseBetweenNotes <= currentTime){ // next note
 }
 
 void loop() {
-
+  /*int value = analogRead(passiveBuzzer);
+  Serial.println(value);
+  */
   buttonPushedOrNot();
   if(buttonPushesCounter % 2 == 0 && musicPlaying == 1) stopMusic(); //for even presses the music stops
   else if(buttonPushesCounter % 2 == 1 && musicPlaying == 0) { //for odd presses the music plays
@@ -97,14 +108,5 @@ void loop() {
         }
 
   if(musicPlaying == 1) continueSong();
-
-  int value = analogRead(passiveBuzzer);
-  Serial.println(value);
   
 }
-
-
-
-
-
-
