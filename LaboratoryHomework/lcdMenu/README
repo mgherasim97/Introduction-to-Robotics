@@ -1,0 +1,5 @@
+Menu created on an arduino lcd display that allows access to different pages such as:
+1)Start Game, where every 5 seconds the level increases by 1 and after 10 seconds the game closes
+2)Highscore, where i keep the biggest score and the owner of it
+3)settings, where the difficulty can be changes and the name of the current player
+
