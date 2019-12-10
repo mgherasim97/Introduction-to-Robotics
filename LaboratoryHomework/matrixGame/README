@@ -1,0 +1,40 @@
+Nume: Flappy Bird
+Requirements:
+  -8X16 matrix
+  -1 x joystick
+  -cables
+  -2 x driver
+  -1 x arduino board
+  -1 x buzzer
+  -1 x LCD
+  -1 x button
+  
+Game description:
+  HOW TO PLAY:
+    You are a dot on the left-side of the 8x16 matrix. The scenary consists of multiple layers of 2 pipes facing each other like this:
+        ||
+        ||
+        ||
+     FREE SPACE
+        ||
+        ||
+      Each button press makes the bird to fly up for 2 matrix pixels, then the bird descends at a preset speed. You have to
+ push the button regularly in order to keep the bird flying.
+      The objective is for the bird to pass through the FREE SPACE, each succesful pass incrementing the current score by 1. 
+      The pipes will move from the right side to the left side, with the bird having a STATIC column but changing line
+      Maximum is 1000 (may implement it to infinity)
+      
+      
+  DIFICULTY:
+      The dificulty increases as the players reaches a higher score. The current idea is to increase the speed at which the pipes move, 
+   but there is a posibility to decrease the FREE SPACE dimension (will see how that goes).
+  
+  LCD:
+      It controlles the menu of the game with a startGame, Highscore and settings menu. 
+      Start Game : it starts the game
+      Highscore:keeps the name and score of the bestscorer in EEPROM
+      Settings: changes the current players name and the INITIAL difficulty of the game.
+      
+      
+
+     
