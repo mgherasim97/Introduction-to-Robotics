@@ -1,6 +1,6 @@
 Nume: Flappy Bird
 Requirements:
-  -8X16 matrix
+  -8X8 matrix
   -1 x joystick
   -cables
   -2 x driver
@@ -11,7 +11,7 @@ Requirements:
   
 Game description:
   HOW TO PLAY:
-    You are a dot on the left-side of the 8x16 matrix. The scenary consists of multiple layers of 2 pipes facing each other like this:
+    You are a dot on the left-side of the 8x8 matrix. The scenary consists of multiple layers of 2 pipes facing each other like this:
         ||
         ||
         ||
