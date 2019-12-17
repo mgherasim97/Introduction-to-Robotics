@@ -3,11 +3,9 @@ Requirements:
   -8X8 matrix
   -1 x joystick
   -cables
-  -2 x driver
+  -1 x driver
   -1 x arduino board
-  -1 x buzzer
   -1 x LCD
-  -1 x button
   
 Game description:
   HOW TO PLAY:
@@ -19,22 +17,23 @@ Game description:
         ||
         ||
       Each button press makes the bird to fly up for 2 matrix pixels, then the bird descends at a preset speed. You have to
- push the button regularly in order to keep the bird flying.
+ push the button regularly in order to keep the bird flying (you can also keep the button pressed in order to make the bird ascend faster).
       The objective is for the bird to pass through the FREE SPACE, each succesful pass incrementing the current score by 1. 
       The pipes will move from the right side to the left side, with the bird having a STATIC column but changing line
-      Maximum is 1000 (may implement it to infinity)
-      
       
   DIFICULTY:
-      The dificulty increases as the players reaches a higher score. The current idea is to increase the speed at which the pipes move, 
-   but there is a posibility to decrease the FREE SPACE dimension (will see how that goes).
+      The dificulty increases as the players reaches a higher score.
+      You level up when your score is divisible by 5. Level 1 is 5, level 2 is 10 etc... 
+      Each level increses the speed at which the pipes move
   
   LCD:
       It controlles the menu of the game with a startGame, Highscore and settings menu. 
       Start Game : it starts the game
       Highscore:keeps the name and score of the bestscorer in EEPROM
       Settings: changes the current players name and the INITIAL difficulty of the game.
-      
+  
+  DEMO VIDEO:
+    
       
 
      
